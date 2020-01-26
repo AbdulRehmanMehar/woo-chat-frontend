@@ -1,0 +1,26 @@
+<div class="container" style="margin-top: 40px;">
+  <div class="ui grid">
+    <div class="four wide column">
+      <div class="ui vertical menu">
+        <div class="item">
+          <div class="ui transparent icon input">
+            <input type="text" placeholder="Search user...">
+            <i class="search icon"></i>
+          </div>
+        </div>
+        <a class="item" routerLink="/chatroom/alex">
+          User 1
+        </a>
+        <a class="item" routerLink="/chatroom/abs">
+          User 2
+        </a>
+        <a class="item">
+          User 3
+        </a>
+      </div>
+    </div>
+    <div class="twelve wide column">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
