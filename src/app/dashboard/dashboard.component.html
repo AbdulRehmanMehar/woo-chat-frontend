@@ -1,0 +1,20 @@
+<div class="container" style="margin-top: 40px;">
+  <div class="ui grid">
+    <div class="four wide column">
+      <div class="ui vertical menu">
+        <a class="item" routerLink="/dashboard/create-contact">
+          Create Contact
+        </a>
+        <a class="item" routerLink="/chatroom">
+          Chat
+        </a>
+        <a class="item">
+          Logout
+        </a>
+      </div>
+    </div>
+    <div class="twelve wide column">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
