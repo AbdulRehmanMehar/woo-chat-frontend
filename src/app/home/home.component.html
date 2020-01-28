@@ -2,11 +2,13 @@
 
 <div class="container" style="margin-top: 40px;">
   <h1>Welcome to WooChat</h1>
-  <p>
+  <p *ngIf="!(authState | async).authenticated">
     <a routerLink="/login" class="ui button">Login</a>
     <a routerLink="/register" class="ui button">Register</a>
   </p>
-  <p>
+
+  <div *ngIf="(authState | async).authenticated">
+    <h3>Hello {{ (authState| async).user.name }}</h3>
     <a routerLink="/dashboard" class="ui button">Dashboard</a>
-  </p>
+  </div>
 </div>
