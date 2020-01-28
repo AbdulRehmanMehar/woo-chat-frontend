@@ -5,7 +5,11 @@
         <i class="icon home"></i>
         WooChat
       </a>
-      <div class="right menu">
+      <div class="right menu" *ngIf="(authState$ | async).authenticated">
+        <a routerLink="/dashboard" class="item">Dashboard</a>
+        <div class="item">{{  (authState$ | async).user.name }}</div>
+      </div>
+      <div class="right menu" *ngIf="!(authState$ | async).authenticated">
         <a routerLink="/login" class="item">Login</a>
         <a routerLink="/register" class="item">Register</a>
       </div>

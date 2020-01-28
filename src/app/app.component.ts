@@ -1,17 +1,24 @@
-import { Component } from '@angular/core';
+import { AuthState } from './store/models/auth.model';
+import { Observable } from 'rxjs';
+import { AppState } from './store/models/app-state.model';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  authState$: Observable<AuthState>;
 
   public constructor(
+    private store: Store<AppState>,
     private titleService: Title,
-    router: Router
+    router: Router,
   ) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -35,4 +42,9 @@ export class AppComponent {
     }
     return data;
   }
+
+  ngOnInit() {
+    this.authState$ = this.store.select(store => store.auth);
+  }
+
 }
