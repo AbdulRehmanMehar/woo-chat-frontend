@@ -1,3 +1,4 @@
+import { RouteGaurdService } from './route-gaurd.service';
 import { MessengerComponent } from './messenger/messenger.component';
 import { ChatComponent } from './chat/chat.component';
 import { CreateContactComponent } from './create-contact/create-contact.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [RouteGaurdService],
     component: DashboardComponent,
     children: [
       {
@@ -52,6 +54,7 @@ const routes: Routes = [
   },
   {
     path: 'chatroom',
+    canActivate: [RouteGaurdService],
     component: ChatComponent,
     data: {
       title: 'Chatroom - WooChat'
