@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  serverAddress: /*process.env.serverAddress*/ 'http://localhost:8080'
+
 };
