@@ -10,6 +10,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateContactComponent } from './create-contact/create-contact.component';
 import { ChatComponent } from './chat/chat.component';
 import { MessengerComponent } from './messenger/messenger.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
+
+import { StoreModule } from '@ngrx/store';
+import { AuthReducer } from './store/reducers/auth.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +36,13 @@ import { MessengerComponent } from './messenger/messenger.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot({ auth: AuthReducer }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
