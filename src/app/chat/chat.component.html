@@ -4,19 +4,21 @@
       <div class="ui vertical menu">
         <div class="item">
           <div class="ui transparent icon input">
-            <input type="text" placeholder="Search user...">
-            <i class="search icon"></i>
+            <form class="ui form" style="position: relative;" [formGroup]="search">
+              <input type="text" placeholder="Search user..." formControlName="field" (keyup)="filterContacts($event)" style="width: calc(100% );">
+              <i class="search icon" style="display: block; position: absolute; top: 12px; right: 0" ></i>
+            </form>
           </div>
         </div>
-        <a class="item" routerLink="/chatroom/alex">
-          User 1
-        </a>
-        <a class="item" routerLink="/chatroom/abs">
-          User 2
-        </a>
-        <a class="item">
-          User 3
-        </a>
+
+        <div *ngIf="(contacts$ | async)">
+          <a class="item" *ngFor="let contact of (contacts$ | async)" [routerLink]="['/chatroom/' + contact.username]" routerLinkActive="active-contact">
+            {{ contact.name }}
+            <div class="ui teal left pointing label" *ngIf="contact.unreadMessages">
+              {{ contact.unreadMessages }}
+            </div>
+          </a>
+        </div>
       </div>
     </div>
     <div class="twelve wide column">
