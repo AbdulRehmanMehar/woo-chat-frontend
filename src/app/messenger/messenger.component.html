@@ -1,47 +1,37 @@
 <section class="msger">
   <header class="msger-header">
     <div class="msger-header-title">
-      <i class="fas fa-comment-alt"></i> WooChat
+      <i class="fas fa-comment-alt"></i>  WooChat
     </div>
     <div class="msger-header-options">
       <span><i class="fas fa-cog"></i></span>
     </div>
   </header>
 
-  <main class="msger-chat">
-    <div class="msg left-msg">
-      <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+  <main class="msger-chat" id="msger-chat" *ngIf="messages$ && messages$.length > 0" style="max-height: 400px; overflow-y: auto;" #scrollMe>
+    <div class="msg" *ngFor="let message of messages$" [class.left-msg]="(user$ | async).id == message.receiver_id" [class.right-msg]="(user$ | async).id != message.receiver_id">
 
       <div class="msg-bubble">
         <div class="msg-info">
-          <div class="msg-info-name">BOT</div>
-          <div class="msg-info-time">12:45</div>
+          <div class="msg-info-name" style="color: black;">{{ (user$ | async).id != message.receiver_id  ? (user$ | async).name : 'You'}}</div>
         </div>
 
-        <div class="msg-text">
-          Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
-        </div>
-      </div>
-    </div>
-
-    <div class="msg right-msg">
-      <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>
-
-      <div class="msg-bubble">
-        <div class="msg-info">
-          <div class="msg-info-name">Sajad</div>
-          <div class="msg-info-time">12:46</div>
-        </div>
-
-        <div class="msg-text">
-          You can change your name in JS section!
+        <div class="msg-text" style="color: black;">
+          {{ message.message }}
         </div>
       </div>
+      <br><br>
     </div>
+
   </main>
 
-  <form class="msger-inputarea">
-    <input type="text" class="msger-input" placeholder="Enter your message...">
-    <button type="submit" class="msger-send-btn">Send</button>
+  <form class="msger-inputarea" [formGroup]="form" (ngSubmit)="sendMessage()">
+    <input type="text" class="msger-input" placeholder="Enter your message..." formControlName="field">
+    <div class="alert alert-danger" *ngIf="form.get('field').errors && (form.get('field').dirty || form.get('field').touched)">
+      <div *ngIf="form.get('field').errors.required">
+        Message is required.
+      </div>
+    </div>
+    <button type="submit" class="msger-send-btn" [disabled]="!form.valid">Send</button>
   </form>
 </section>

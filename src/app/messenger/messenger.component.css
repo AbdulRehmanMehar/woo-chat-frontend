@@ -143,7 +143,11 @@ html {
   cursor: pointer;
   transition: background 0.23s;
 }
-.msger-send-btn:hover {
+.msger-send-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+.msger-send-btn:not(:disabled):hover {
   background: rgb(0, 180, 50);
 }
 
