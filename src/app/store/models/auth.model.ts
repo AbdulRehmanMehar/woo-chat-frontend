@@ -4,6 +4,7 @@ export interface User {
   phone: string;
   token?: string;
   username: string;
+  unreadMessages?: number;
 }
 
 export interface LoginCredentials {
