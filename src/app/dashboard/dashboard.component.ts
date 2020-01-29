@@ -1,4 +1,6 @@
-import { LogoutAction } from './../store/actions/auth.actions';
+import { LoadContactsAction } from './../store/actions/contact.actions';
+import { Router } from '@angular/router';
+import { LogoutAction, LoadAuthAction } from './../store/actions/auth.actions';
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '../store/models/app-state.model';
 import { Store } from '@ngrx/store';
@@ -10,12 +12,11 @@ import { Store } from '@ngrx/store';
 })
 export class DashboardComponent implements OnInit {
 
-
-
-  constructor(private store$: Store<AppState>) { }
+  constructor(private store$: Store<AppState>, private router$: Router) { }
 
   logout() {
     this.store$.dispatch(new LogoutAction());
+    this.router$.navigate(['']);
   }
 
   ngOnInit() {
