@@ -1,3 +1,4 @@
+import { ContactEffects } from './store/effects/contact.effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -22,6 +23,7 @@ import { StoreModule } from '@ngrx/store';
 import { AuthReducer } from './store/reducers/auth.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { ContactReducer } from './store/reducers/contact.reducer';
 
 @NgModule({
   declarations: [
@@ -40,8 +42,8 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ auth: AuthReducer }),
-    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot({ auth: AuthReducer, contact: ContactReducer }),
+    EffectsModule.forRoot([AuthEffects, ContactEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
