@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthState } from './../store/models/auth.model';
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   state$: Observable<AuthState>;
   loginForm: FormGroup;
 
-  constructor(private store$: Store<AppState>) {}
+  constructor(private store$: Store<AppState>, private router$: Router) {}
 
   private intializeForm() {
     this.loginForm = new FormGroup({
@@ -37,10 +38,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.intializeForm();
     this.state$ = this.store$.select(store => store.auth);
-    console.log(this.state$)
   }
 
   handleLogin() {
     this.store$.dispatch(new LoginAction(this.loginForm.value));
+    this.loginForm.reset();
+    this.router$.navigate(['']);
   }
 }

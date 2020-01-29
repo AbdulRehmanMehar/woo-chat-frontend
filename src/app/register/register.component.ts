@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthState } from './../store/models/auth.model';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   state$: Observable<AuthState>;
   registerForm: FormGroup;
 
-  constructor(private store$: Store<AppState>) {}
+  constructor(private store$: Store<AppState>, private router$: Router) {}
 
   private intializeForm() {
     this.registerForm = new FormGroup({
@@ -34,6 +35,8 @@ export class RegisterComponent implements OnInit {
 
   handleRegistration() {
     this.store$.dispatch(new RegisterAction(this.registerForm.value));
+    this.registerForm.reset();
+    this.router$.navigate(['']);
   }
 
 }
