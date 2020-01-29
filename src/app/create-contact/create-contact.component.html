@@ -1,11 +1,28 @@
 <div class="container">
   <h1>Create Contact</h1>
-  <form class="ui form">
+  <form class="ui form" [formGroup]="contactForm" (ngSubmit)="handleSubmission()">
     <div class="field">
       <label>Phone Number</label>
-      <input type="number" placeholder="Phone Number">
+      <input type="number" placeholder="Phone Number" formControlName="phone">
+      <div *ngIf="contactForm.get('phone').errors && (contactForm.get('phone').dirty || contactForm.get('phone').touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="contactForm.get('phone').errors.required">
+          Phone Number is required.
+        </div>
+        <div *ngIf="contactForm.get('phone').errors.minlength || contactForm.get('phone').errors.maxlength">
+          Phone Number must be at least 12 characters long.
+        </div>
+      </div>
     </div>
-    <button class="ui button" type="submit">Submit</button>
+    <div class="field">
+      <div class="alert alert-danger" *ngIf="(state$ | async).formError">
+        <p *ngFor="let error of (state$ |async).formError">
+          {{ error.msg }}
+        </p>
+      </div>
+    </div>
+    <button class="ui button" type="submit" [disabled]="!contactForm.valid">Submit</button>
   </form>
 
 </div>
