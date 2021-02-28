@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  serverAddress: /*process.env.serverAddress*/ 'https://woochat-backend.herokuapp.com/'
+  serverAddress: /*process.env.serverAddress*/ 'https://woochat-backend.herokuapp.com'
 
 };
