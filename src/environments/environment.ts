@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverAddress: /*process.env.serverAddress ||*/ 'http://localhost:8080'
+  serverAddress: /*process.env.serverAddress ||*/ 'https://woochat-backend.herokuapp.com/'
 };
 
 /*
