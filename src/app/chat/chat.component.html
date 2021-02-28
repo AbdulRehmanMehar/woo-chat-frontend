@@ -5,7 +5,7 @@
         <div class="item">
           <div class="ui transparent icon input">
             <form class="ui form" style="position: relative;" [formGroup]="search">
-              <input type="text" placeholder="Search user..." formControlName="field" (keyup)="filterContacts($event)" style="width: calc(100% );">
+              <input type="text" placeholder="Search user..." formControlName="field" (keyup)="filterContacts()" style="width: calc(100% );">
               <i class="search icon" style="display: block; position: absolute; top: 12px; right: 0" ></i>
             </form>
           </div>
