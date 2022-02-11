@@ -15,7 +15,7 @@ import { AppState } from '../store/models/app-state.model';
 export class ContactService {
 
 
-  private BASE_URL = environment.serverAddress;
+  private BASE_URL = 'https://woochat-backend.herokuapp.com';
 
   constructor(private http: HttpClient) {
 
