@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class IoService {
   private socket;
-  private BASE_URL = environment.serverAddress;
+  private BASE_URL = 'https://woochat-backend.herokuapp.com';
 
   constructor() {
     this.socket = io(this.BASE_URL, {
