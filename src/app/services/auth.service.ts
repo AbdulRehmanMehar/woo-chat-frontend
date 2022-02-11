@@ -15,11 +15,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(credentials: LoginCredentials) {
-    return this.http.post<AuthResponse>(`${this.BASE_URL}/auth/login`, credentials);
+    return this.http.post<AuthResponse>(`https://woochat-backend.herokuapp.com/auth/login`, credentials);
   }
 
   register(credentials: RegisterCredentials) {
-    return this.http.post<AuthResponse>(`${this.BASE_URL}/auth/register`, credentials);
+    return this.http.post<AuthResponse>(`https://woochat-backend.herokuapp.com/auth/register`, credentials);
   }
 
   logout() {
